@@ -1,2 +1,6 @@
-# arborist-cli
-Dependency Tree Management 
+# Arborist CLI
+CLI for managing dependency trees.
+
+## Problem
+
+![image](images/problem.png)
