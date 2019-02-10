@@ -48,11 +48,21 @@ on another stage to complete before being ran.
 }
 ```
 
+Where,
+* `configuration.username` is the user to perform the GIT operations
+* `configuration.password` is the password of the user
+* `configuration.type` is the type of dependency management being used
+* `pipeline` setups the stages to execute
+* `pipeline.stages` is a map of stage name to `stage`
+
 #### Stage
+A stage describe the repositories to update and how to update them. Potentially, only very specific dependencies will want to be updated 
+or everything except for a select few.
+
 ```json
 {
   "updateDependencies": true,
-  "updateParents": true,
+  "updateParent": true,
   "previousStage": "",
   "includes": [
     {
@@ -72,3 +82,12 @@ on another stage to complete before being ran.
   "completionStep": "mvn deploy"
 }
 ```
+
+Where,
+* `updateDependencies` determines if a repositories dependencies should be updated - if absent, the default value is `false`
+* `updateParent` determines if a repositories parent should be updated - if absent, the default value is `false`
+* `previousStage` determine which stage needs to be completed first before the current stage can be ran - if absent, the stage will be execute immediately
+* `includes` lists the dependencies to only be be updated
+* `excludes` lists the dependencies to be excluded from being updated
+* `repositories` lists the repositories to update
+* `completionStep` specifies the command to run after a repository has been updated
