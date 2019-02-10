@@ -33,40 +33,15 @@ on another stage to complete before being ran.
 
 ```json
 {
+  "configuration": {
+    "username": "",
+    "password": "",
+    "type": "maven"
+  },
   "pipeline": {
     "stages": {
-      "stage-0" : {
-        "updateDependencies": true,
-        "includes": [
-          {
-            "groupId": "",
-            "artifactId": ""
-          }
-        ],
-        "repositories": [
-          ""
-        ]
-      },
-      "stage-1": {
-        "updateDependencies": true,
-        "updateParents": true,
-        "excludes": [
-          {
-            "groupId": "",
-            "artifactId": ""
-          }
-        ],
-        "previousStage": "stage-0",
-        "repositories": [
-          ""
-        ]
-      },
-      "stage-2": {
-        "updateDependencies": true,
-        "previousStage": "stage-0",
-        "repositories": [
-          ""
-        ]
+      "${named stage}" : {
+        ...
       }
     }
   }
@@ -93,6 +68,7 @@ on another stage to complete before being ran.
   ],
   "repositories": [
     ""
-  ]
+  ],
+  "completionStep": "mvn deploy"
 }
 ```
